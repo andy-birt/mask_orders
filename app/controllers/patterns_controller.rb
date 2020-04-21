@@ -8,6 +8,12 @@ class PatternsController < ApplicationController
   end
 
   def create
+    @pattern = Pattern.new(pattern_params)
+    if @pattern.save
+      redirect_to patterns_path
+    else
+      render "new"
+    end
   end
 
   def edit
@@ -18,5 +24,11 @@ class PatternsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+    def pattern_params
+      params.require(:pattern).permit(:name)
+    end
 
 end
