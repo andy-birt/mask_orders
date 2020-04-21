@@ -4,13 +4,13 @@
 </div>
 <table class="table table-striped">
   <tbody>
-    <tr class="align-items-center">
-      <% @patterns.each do |pattern| %>
+    <% @patterns.each do |pattern| %>
+      <tr class="align-items-center">
         <td class="cell" style="line-height: 36px;"><%= pattern.name %></td>
         <td class="cell"><%= link_to 'edit', edit_pattern_path(pattern), class: "btn btn-warning" %></td>
         <td class="cell"><%= link_to 'delete', pattern_path(pattern), class: "btn btn-danger" %></td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <div class="new-pattern"></div>
