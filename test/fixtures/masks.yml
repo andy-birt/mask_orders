@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  size: MyString
+  style: MyString
+  pattern: MyString
+  cut: false
+  sewn: false
+  band: false
+
+two:
+  size: MyString
+  style: MyString
+  pattern: MyString
+  cut: false
+  sewn: false
+  band: false

@@ -1,0 +1,60 @@
+@import "bootstrap";
+
+.container {
+  margin-top: 10px;
+}
+
+.orders {
+  border: 1px solid #666;
+  border-radius: 5px;
+  .order {
+    border-bottom: 1px solid #666;
+    padding: 15px 10px;
+    &:last-child {
+      border: none;
+    }
+    div[class^=order-] {
+      a {
+        text-decoration: none;
+        // padding: 15px 5px;
+      }
+    }
+  }
+}
+
+.orders-patterns-button {
+  margin-top: 5px;
+}
+
+[class^=mask] {
+  line-height: 50px;
+  overflow-x: auto;
+  height: 0;
+  transition: height 1s ease;
+  .button_to {
+    width: 30.45px;
+    display: inline-block;
+  }
+}
+
+[class$=options] {
+  overflow: hidden;
+  height: 0;
+}
+
+[id^=order] {
+  display: inline-block;
+  width: 100%;
+}
+
+[class^=mask].active {
+  height: auto;
+}
+
+[class$=options].active {
+  height: 100px;
+}
+
+.cell {
+  text-align: center;
+}

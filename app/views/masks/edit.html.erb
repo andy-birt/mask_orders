@@ -1,0 +1,41 @@
+<h1><%= @mask.order.name %></h1>
+<%= form_with model: @mask, class: "form-group" do |f| %>
+  <%# f.hidden_field :order, value: params[:order] %>
+  <div class="input-group mb-3">
+    <%= f.label :size, class: "sr-only" %>
+    <%= f.select :size, Size.all.collect{|s| s.name }, {}, class: "form form-control" %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.label :style, class: "sr-only" %>
+    <%= f.select :style, Style.all.collect{|s| s.name }, {}, class: "form form-control" %>
+  </div>
+  <div class="input-group mb-3">
+    <%= f.label :pattern, class: "sr-only" %>
+    <%= f.select :pattern, Pattern.all.collect{|s| s.name }, {}, class: "form form-control" %>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <%= f.check_box :cut, {}, :true, :false %>
+      </div>
+    </div>
+    <%= f.label :cut, class: "form-control" %>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <%= f.check_box :sewn, {}, :true, :false %>
+      </div>
+    </div>
+    <%= f.label :sewn, class: "form-control" %>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <%= f.check_box :band, {}, :true, :false %>
+      </div>
+    </div>
+    <%= f.label :band, class: "form-control" %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-success form-control" %>
+<% end %>

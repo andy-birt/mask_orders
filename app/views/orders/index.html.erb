@@ -1,0 +1,31 @@
+<h1>Orders</h1>
+<%= link_to 'Back', root_url %>
+<div class="orders">
+  <% @orders.each do |order| %> <%# -- iterate undelivered orders -- %>
+    <div class="order">
+      <div class="order-<%= order.id %>">
+        <%= link_to order.name, order, remote: true, id: "order-#{order.id}" %>
+      </div>
+      <div class="masks-<%= order.id %>">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">size</th>
+              <th scope="col">style</th>
+              <th scope="col">pattern</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% order.masks.each do |mask| %>
+              <tr> <%# -- Begin mask iteration of order -- %>
+                <td scope="row"><%= mask.size %></td>
+                <td><%= mask.style %></td>
+                <td><%= mask.pattern %></td>
+              </tr> <%# -- end mask iteration -- %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

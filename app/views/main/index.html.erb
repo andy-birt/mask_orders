@@ -1,0 +1,66 @@
+<h1 class="float-left">Orders</h1>
+
+<div class="orders-patterns-button float-right">
+  <%= link_to "Patterns", patterns_path, class: "btn btn-primary" %>
+</div>
+
+<%# -- create a new order/insert view on click -- %>
+<%= button_to "Create Order", new_order_path, method: :get, remote: true, class: "btn btn-primary form-control mb-3" %>
+
+<div class="new-order"></div>
+<%# -- end new order-- %>
+
+<div class="orders mb-3">
+  <% @orders.each do |order| %> <%# -- iterate undelivered orders -- %>
+    <div class="order">
+      <div class="order-<%= order.id %>">
+        <%= link_to order.name, order, remote: true, id: "order-#{order.id}" %>
+      </div>
+      <div class="masks-<%= order.id %>">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">size</th>
+              <th scope="col">style</th>
+              <th scope="col">pattern</th>
+              <th scope="col">cut</th>
+              <th scope="col">sewn</th>
+              <th scope="col">band</th>
+              <th scope="col">edit</th>
+              <th scope="col">delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% order.masks.each do |mask| %>
+              <tr> <%# -- Begin mask iteration of order -- %>
+                <td scope="row"><%= mask.size %></td>
+                <td><%= mask.style %></td>
+                <td><%= mask.pattern %></td>
+                <%= fields_for mask, :cut do |f| %>
+                  <td><%= f.check_box :cut, disabled: true %></td>
+                <% end %>
+                <%= fields_for mask, :sewn do |f| %>
+                  <td><%= f.check_box :sewn, disabled: true %></td>
+                <% end %>
+                <%= fields_for mask, :band do |f| %>
+                  <td><%= f.check_box :band, disabled: true %></td>
+                <% end %>
+                <td><%= button_to "/", edit_mask_path(mask), method: :get, class: "btn btn-warning"%></td>
+                <td><%= button_to "-", mask_path(mask), method: :delete, data: { confirm: "You really want to delete the mask?" }, class: "btn btn-danger" %></td>
+              </tr> <%# -- end mask iteration -- %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-<%= order.id %>-options">
+        <%# -- create a new mask/insert view on click -- %>
+        <div class="new-mask-<%= order.id %>"></div>
+        <%= link_to "Add mask to #{order.name}", new_mask_path( order: order.id ), remote: true, class: "btn btn-success form-control" %>
+        <%# -- end new mask -- %>
+        <%# -- deliver order -- %>
+        <%= link_to 'Deliver Order', deliver_order_path(order), method: :post, class: "btn btn-info form-control" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'Completed Orders', orders_path %>

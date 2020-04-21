@@ -1,0 +1,5 @@
+<%= form_with model: Order.new, class: "form-group" do |f| %>
+  <%= f.label :name, class: "mt-3" %>
+  <%= f.text_field :name, class: "form form-control mb-3" %>
+  <%= f.submit "Submit", class: "btn btn-success form-control" %>
+<% end %>
