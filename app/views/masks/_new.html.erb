@@ -1,5 +1,4 @@
 <%= form_with model: Mask.new, class: "form-group" do |f| %>
-  <%= f.hidden_field :order, value: params[:order] %>
   <%= f.label :size, class: "sr-only" %>
   <%= f.select :size, Size.all.collect{|s| s.name }, {}, class: "form form-control mb-3" %>
   <%= f.label :style, class: "sr-only" %>

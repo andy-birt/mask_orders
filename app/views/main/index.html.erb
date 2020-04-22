@@ -55,7 +55,7 @@
       <div class="order-<%= order.id %>-options">
         <%# -- create a new mask/insert view on click -- %>
         <div class="new-mask-<%= order.id %>"></div>
-        <%= link_to "Add mask to #{order.name}", new_mask_path( order: order.id ), remote: true, class: "btn btn-success form-control" %>
+        <%= link_to "Add mask to #{order.name}", new_mask_path( order: order.id ), remote: true, class: "btn btn-success form-control mb-3" %>
         <%# -- end new mask -- %>
         <%# -- deliver order -- %>
         <%= link_to 'Deliver Order', deliver_order_path(order), method: :post, class: "btn btn-info form-control" %>
@@ -64,3 +64,11 @@
   <% end %>
 </div>
 <%= link_to 'Completed Orders', orders_path %>
+
+<% if params[:update_id] %>
+  <script>
+      $(".order-<%= params[:update_id] %>").get(0).scrollIntoView();
+      $(".order-<%= params[:update_id] %>-options").toggleClass("active");
+      $(".masks-<%= params[:update_id] %>").toggleClass("active");
+  </script>
+<% end %>

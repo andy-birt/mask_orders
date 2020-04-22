@@ -2,6 +2,8 @@
 <div class="orders-patterns-button float-right">
   <%= link_to 'Orders', root_url, class: "btn btn-primary" %>
 </div>
+<%= link_to 'Create Pattern', new_pattern_path, method: :get, remote: true, class: "btn btn-primary form-control mb-3" %>
+<div class="new-pattern"></div>
 <table class="table table-striped">
   <tbody>
     <% @patterns.each do |pattern| %>
@@ -13,5 +15,3 @@
     <% end %>
   </tbody>
 </table>
-<div class="new-pattern"></div>
-<%= link_to 'Create Pattern', new_pattern_path, method: :get, remote: true, class: "btn btn-primary form-control" %>

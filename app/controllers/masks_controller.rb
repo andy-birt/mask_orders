@@ -1,13 +1,14 @@
 class MasksController < ApplicationController
 
   def new
+    helpers.set_current_order(params[:order])
   end
 
   def create
-    @order = Order.find(params[:mask][:order])
+    @order = Order.find(helpers.current_order)
     @mask = @order.masks.build(mask_params)
     if @mask.save
-      redirect_to root_url
+      redirect_to root_url(update_id: @order.id)
     else
       render "new"
     end
@@ -20,7 +21,7 @@ class MasksController < ApplicationController
   def update
     @mask = Mask.find(params[:id])
     if @mask.update(mask_params)
-      redirect_to root_url
+      redirect_to root_url(update_id: @order.id)
     else
       render "edit"
     end
